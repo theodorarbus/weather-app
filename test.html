@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="api-features.js"></script>
+  </head>
+  <body>
+    <label for="city1">Välj stad 1:</label>
+    <select id="city1" onchange="handleCityChange(1)">
+      <option value="Miami">Miami</option>
+      <option value="Haparanda">Haparanda</option>
+      <option value="Norrköping">Norrköping</option>
+      <option value="Yakutsk">Yakutsk</option>
+    </select>
+
+    <label for="city2">Välj stad 2:</label>
+    <select id="city2" onchange="handleCityChange(2)">
+      <option value="Miami">Miami</option>
+      <option value="Haparanda">Haparanda</option>
+      <option value="Norrköping">Norrköping</option>
+      <option value="Yakutsk">Yakutsk</option>
+    </select>
+
+    <div id="city1-temperatures">
+      <p>08:00: <span id="temp1-08">-</span></p>
+      <p>12:00: <span id="temp1-12">-</span></p>
+      <p>16:00: <span id="temp1-16">-</span></p>
+      <p>20:00: <span id="temp1-20">-</span></p>
+    </div>
+
+    <div id="city2-temperatures">
+      <p>08:00: <span id="temp2-08">-</span></p>
+      <p>12:00: <span id="temp2-12">-</span></p>
+      <p>16:00: <span id="temp2-16">-</span></p>
+      <p>20:00: <span id="temp2-20">-</span></p>
+    </div>
+  </body>
+</html>
