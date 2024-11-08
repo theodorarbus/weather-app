@@ -1,21 +1,37 @@
+//sparar latitud och longitud för varje stad i ett objekt där nycklarna är stadens namn.
 const cities = {
     "Miami": { lat: 25.761681, lon: -80.191788 },
     "Haparanda": { lat: 65.8335, lon: 24.1333 },
     "Norrköping": { lat: 58.5953, lon: 16.1830 },
     "Yakutsk": { lat: 62.035454, lon: 129.675476 }
-};function fetchCityWeather(city) { 
+};
+
+/*
+funktion som hämtar väderdata från api baserat på vald stad.
+Den använder latitud och longitud  från objektet'cities' för att hämta rätt koordinater till den valda staden.
+ */
+function fetchCityWeather(city) { 
     const { lat, lon } = cities[city]; 
-    return fetch(`https://api.weatherapi.com/v1/forecast.json?key=9cfbd445da5343709f0132314240711&q=${lat},${lon}&lang=sv`)
+    return fetch(`https://api.weatherapi.com/v1/forecast.json?key=9cfbd445da5343709f0132314240711&q=${lat},${lon}`)
         .then(response => response.json())
         .then(data => {
             if (data && data.forecast) {
+                // Hämtar timdata för första dagen i väderprognosen
                 const hourlyData = data.forecast.forecastday[0].hour;
-                // Array som specificerar vilka timmar vi vill hämta temperaturen för
+                // skapar en Array med de specifika timmar vi vill hämta temperaturen för
                 const selectedHours = [8, 12, 16, 20];
+
+                // Skapar en ny array (hourlyTemps) genom att använda map-funktionen 
+                // Den baseras på det urvalet vi gjort i selectedHours
                 const hourlyTemps = selectedHours.map(hour => {
+                    // Använder find för att hitta objekt i första dagen i väderprognosen som matchar de timmar vi valt
                     const hourData = hourlyData.find(h => new Date(h.time).getHours() === hour);
-                    return hourData ? hourData.temp_c : null;  // Return only the temperature (no time)
-                }).filter(temp => temp !== null);  // Filter out any null values
+                    // När ett objekt hittas returneras temperaturen för den timmen
+                    // Om inget objekt hittas så returneras undefined för den timmen. 
+                    return hourData && hourData.temp_c;  
+                });
+                
+                // Skapar ett objekt "currentWeather" som innehåller aktuell väderinformation (för de valda städerna) som vi ska visa på vår sida
                 const currentWeather = {
                     temp_now: data.current.temp_c,
                     feels_like: data.current.feelslike_c,
@@ -26,14 +42,17 @@ const cities = {
                     sunrise: data.forecast.forecastday[0].astro.sunrise,
                     sunset: data.forecast.forecastday[0].astro.sunset
                 };
+                //returnerar ett objekt som kombinerar hourlyTemps och currentWeather
                 return {
                     hourlyTemps, ...currentWeather
                 };
 
             } else {
-                throw new Error("Failed to fetch data");
+        
+                throw new Error("Api-svaret innehåller inte den förväntande väderdatan");
             }
         })
+        //fångar alla typer av fel såsom nätverk, api-fel, ogiltig data och loggar i konsolen.
         .catch(error => console.error("Error fetching city data:", error));
 }
 
