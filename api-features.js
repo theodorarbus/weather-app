@@ -3,23 +3,33 @@ const cities = {
     "Haparanda": { lat: 65.8335, lon: 24.1333 },
     "Norrköping": { lat: 58.5953, lon: 16.1830 },
     "Yakutsk": { lat: 62.035454, lon: 129.675476 }
-};
-// Skapar en funktion som tar city som en parameter, ska vara en av städerna i objektet cities. den sparar latitud och longitud för att användas i url baserat på vilken stad man vill hämta från. 
-function fetchCityWeather(city) {
+};function fetchCityWeather(city) { 
     const { lat, lon } = cities[city]; 
-    return fetch(`https://api.weatherapi.com/v1/forecast.json?key=9cfbd445da5343709f0132314240711&q=${lat},${lon}`)
+    return fetch(`https://api.weatherapi.com/v1/forecast.json?key=9cfbd445da5343709f0132314240711&q=${lat},${lon}&lang=sv`)
         .then(response => response.json())
         .then(data => {
             if (data && data.forecast) {
                 const hourlyData = data.forecast.forecastday[0].hour;
                 // Array som specificerar vilka timmar vi vill hämta temperaturen för
-                const selectedHours = [8, 12, 16, 20];  
+                const selectedHours = [8, 12, 16, 20];
                 const hourlyTemps = selectedHours.map(hour => {
                     const hourData = hourlyData.find(h => new Date(h.time).getHours() === hour);
                     return hourData ? hourData.temp_c : null;  // Return only the temperature (no time)
-                });
+                }).filter(temp => temp !== null);  // Filter out any null values
+                const currentWeather = {
+                    temp_now: data.current.temp_c,
+                    feels_like: data.current.feelslike_c,
+                    uv_index: data.current.uv,
+                    description: data.current.condition.text,
+                    wind_speed: data.current.wind_kph,
+                    humidity: data.current.humidity,
+                    sunrise: data.forecast.forecastday[0].astro.sunrise,
+                    sunset: data.forecast.forecastday[0].astro.sunset
+                };
+                return {
+                    hourlyTemps, ...currentWeather
+                };
 
-                return hourlyTemps.filter(temp => temp !== null);  // Filter out any null values
             } else {
                 throw new Error("Failed to fetch data");
             }
@@ -27,20 +37,37 @@ function fetchCityWeather(city) {
         .catch(error => console.error("Error fetching city data:", error));
 }
 
-    function updateCityTemperature(city, cityIndex) {
-        //anropar funktionen fetchCityWeather som returnerar en array med temperaturer för de förvalda tiderna, [8, 12, 16, 20]
-        fetchCityWeather(city).then(temps => {
-            // lägger in temperaturerna på den stad som är vald i dropdown menyn. 
+function updateCityTemperature(city, cityIndex) {
+    // Fetch city weather which now returns an object with hourlyTemps and currentWeather
+    fetchCityWeather(city).then(weatherData => {
+        const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset } = weatherData;
+            // lägger in temperaturerna på den stad som är vald i dropdown menyn.
             if (cityIndex === 1) {
-                document.getElementById("temp1-08").innerText = `${temps[0]}°C`;
-                document.getElementById("temp1-12").innerText = `${temps[1]}°C`;
-                document.getElementById("temp1-16").innerText = `${temps[2]}°C`;
-                document.getElementById("temp1-20").innerText = `${temps[3]}°C`;
+                document.getElementById("temp1-08").innerText = `${hourlyTemps[0]}°C`;
+                document.getElementById("temp1-12").innerText = `${hourlyTemps[1]}°C`;
+                document.getElementById("temp1-16").innerText = `${hourlyTemps[2]}°C`;
+                document.getElementById("temp1-20").innerText = `${hourlyTemps[3]}°C`;
+                document.getElementById("temp-now1").innerText = `Current: ${temp_now}°C`;
+                document.getElementById("feels-like1").innerText = `Feels like: ${feels_like}°C`;
+                document.getElementById("uv-index1").innerText = `UV Index: ${uv_index}`;
+                document.getElementById("description1").innerText = `Description: ${description}`;
+                document.getElementById("wind-speed1").innerText = `Wind: ${wind_speed} kph`;
+                document.getElementById("humidity1").innerText = `Humidity: ${humidity}%`;
+                document.getElementById("sunrise1").innerText = `Sunrise: ${sunrise}`;
+                document.getElementById("sunset1").innerText = `Sunset: ${sunset}`;
             } else if (cityIndex === 2) {
-                document.getElementById("temp2-08").innerText = `${temps[0]}°C`;
-                document.getElementById("temp2-12").innerText = `${temps[1]}°C`;
-                document.getElementById("temp2-16").innerText = `${temps[2]}°C`;
-                document.getElementById("temp2-20").innerText = `${temps[3]}°C`;
+                document.getElementById("temp2-08").innerText = `${hourlyTemps[0]}°C`;
+                document.getElementById("temp2-12").innerText = `${hourlyTemps[1]}°C`;
+                document.getElementById("temp2-16").innerText = `${hourlyTemps[2]}°C`;
+                document.getElementById("temp2-20").innerText = `${hourlyTemps[3]}°C`;
+                document.getElementById("temp-now2").innerText = `Current: ${temp_now}°C`;
+                document.getElementById("feels-like2").innerText = `Feels like: ${feels_like}°C`;
+                document.getElementById("uv-index2").innerText = `UV Index: ${uv_index}`;
+                document.getElementById("description2").innerText = `Description: ${description}`;
+                document.getElementById("wind-speed2").innerText = `Wind: ${wind_speed} kph`;
+                document.getElementById("humidity2").innerText = `Humidity: ${humidity}%`;
+                document.getElementById("sunrise2").innerText = `Sunrise: ${sunrise}`;
+                document.getElementById("sunset2").innerText = `Sunset: ${sunset}`;                
             }
         });
     }
