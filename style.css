@@ -15,6 +15,14 @@ body.light-theme {
     transition: 2s;
 }
 
+body.dark-theme {
+    background: radial-gradient(circle, #0c1114, #031629);
+    background-size: 200% 200%;
+    animation: moveGradient 10s infinite alternate;
+    animation-iteration-count: infinite;
+    transition: 2s;
+}
+
 @keyframes moveGradient {
     0% {
         background-position: 0% 50%;
