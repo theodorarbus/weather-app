@@ -7,7 +7,7 @@ body {
     color: rgba(0, 0, 0, 0.7);
 }
     
-body .light-theme {
+body.light-theme {
     background: radial-gradient(circle, #f0e38e, #698aab);
     background-size: 200% 200%;
     animation: moveGradient 10s infinite alternate;
