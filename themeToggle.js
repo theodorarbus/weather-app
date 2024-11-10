@@ -12,11 +12,11 @@ if(savedTheme)
     //Uppdaterar texten på knapen beroende på vilket tema som sparats
  if(savedTheme === "dark-theme")
  {
-   themeToggle.innerText ="Switch to light-theme";
+   themeToggle.innerHTML ='<img src="imgs/sun-icon.svg" alt="sun-icon" class="icon" id="sunIcon">';
  }
  else
  {
-    themeToggle.innerText ="Switch to dark-theme";
+    themeToggle.innerHTML = '<img src="imgs/moon-icon.svg" alt="moon-icon" class="icon" id="moonIcon">';
  }
 
 }
@@ -26,7 +26,7 @@ else
     
     document.body.classList.toggle("light-theme");
     localStorage.setItem("theme", "light-theme");
-    themeToggle.innerText ="Switch to dark-theme";
+    themeToggle.innerHTML = '<img src="imgs/moon-icon.svg" alt="moon-icon" class="icon" id="moonIcon">';
 }
 
 
@@ -39,13 +39,13 @@ themeToggle.addEventListener("click",()=>
    if(document.body.classList.contains("light-theme"))
    {
      localStorage.setItem("theme","light-theme");
-     themeToggle.innerText ="Switch to dark theme";
+     themeToggle.innerHTML = '<img src="imgs/moon-icon.svg" alt="moon-icon" class="icon" id="moonIcon">';
    }
    
    else
    {
     localStorage.setItem("theme","dark-theme");
-    themeToggle.innerText ="Switch to light theme";
+    themeToggle.innerHTML ='<img src="imgs/sun-icon.svg" alt="sun-icon" class="icon" id="sunIcon">';
 
    }
    
