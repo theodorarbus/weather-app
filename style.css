@@ -39,6 +39,7 @@ body {
     padding-top: 30px;
 }
 
+
 .top-wrapper {
     display: flex;
     flex-direction: column;
@@ -215,6 +216,7 @@ h1, h2 {
 }
 
 
+<<<<<<< Updated upstream
 .icon
 {
     width: 75px;
@@ -236,4 +238,43 @@ h1, h2 {
 #moonIcon
 {
     box-shadow: 0 4px 8px;
+=======
+
+
+
+
+>>>>>>> Stashed changes
+}
+
+ .city-1, .city-2 {
+    font-size: 4vw;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.weather-top-left {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.weather-top-right {
+    align-items: flex-end; 
+    text-align: right;
+}
+
+
+.city-dropdown {
+    font-size: 1.6rem; 
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    text-align-last: center;
+    padding: 10px 0;
 }
