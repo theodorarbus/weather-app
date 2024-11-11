@@ -1,3 +1,12 @@
+const dayNames = [];
+const currentDate = new Date();
+const daysOfWeek = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"];
+
+// Lägg till dagarna från idag och framåt
+for (let i = 0; i < 7; i++) {
+  const nextDayIndex = (currentDate.getDay() + i) % 7;
+  dayNames.push(daysOfWeek[nextDayIndex]);
+}
 //sparar latitud och longitud för varje stad i ett objekt där nycklarna är stadens namn.
 const cities = {
     "Miami": { lat: 25.761681, lon: -80.191788 },
@@ -12,7 +21,7 @@ Den använder latitud och longitud  från objektet'cities' för att hämta rätt
  */
 function fetchCityWeather(city) { 
     const { lat, lon } = cities[city]; 
-    return fetch(`https://api.weatherapi.com/v1/forecast.json?key=9cfbd445da5343709f0132314240711&q=${lat},${lon}`)
+    return fetch(`https://api.weatherapi.com/v1/forecast.json?key=9cfbd445da5343709f0132314240711&q=${lat},${lon}&lang=sv&days=7`)
         .then(response => response.json())
         .then(data => {
             if (data && data.forecast) {
@@ -30,7 +39,13 @@ function fetchCityWeather(city) {
                     // Om inget objekt hittas så returneras undefined för den timmen. 
                     return hourData && hourData.temp_c;  
                 });
-                
+
+                const weeklyForecast = data.forecast.forecastday.map(day => ({
+                    date: day.date,
+                    max_temp: day.day.maxtemp_c,
+                    min_temp: day.day.mintemp_c,
+                }));
+                console.log(weeklyForecast);
                 // Skapar ett objekt "currentWeather" som innehåller aktuell väderinformation (för de valda städerna) som vi ska visa på vår sida
                 const currentWeather = {
                     temp_now: data.current.temp_c,
@@ -44,7 +59,7 @@ function fetchCityWeather(city) {
                 };
                 //returnerar ett objekt som kombinerar hourlyTemps och currentWeather
                 return {
-                    hourlyTemps, ...currentWeather
+                    hourlyTemps, ...currentWeather, weeklyForecast
                 };
 
             } else {
@@ -57,36 +72,51 @@ function fetchCityWeather(city) {
 }
 
 function updateCityTemperature(city, cityIndex) {
-    // Fetch city weather which now returns an object with hourlyTemps and currentWeather
+   
     fetchCityWeather(city).then(weatherData => {
-        const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset } = weatherData;
+        const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset, weeklyForecast } = weatherData;
             // lägger in temperaturerna på den stad som är vald i dropdown menyn.
             if (cityIndex === 1) {
-                document.getElementById("temp1-08").innerText = `${hourlyTemps[0]}°C`;
-                document.getElementById("temp1-12").innerText = `${hourlyTemps[1]}°C`;
-                document.getElementById("temp1-16").innerText = `${hourlyTemps[2]}°C`;
-                document.getElementById("temp1-20").innerText = `${hourlyTemps[3]}°C`;
-                document.getElementById("temp-now1").innerText = `Current: ${temp_now}°C`;
-                document.getElementById("feels-like1").innerText = `Feels like: ${feels_like}°C`;
+                document.getElementById("temp1-08").innerText = `${hourlyTemps[0]}°`;
+                document.getElementById("temp1-12").innerText = `${hourlyTemps[1]}°`;
+                document.getElementById("temp1-16").innerText = `${hourlyTemps[2]}°`;
+                document.getElementById("temp1-20").innerText = `${hourlyTemps[3]}°`;
+                document.getElementById("temp-now1").innerText = `Current: ${temp_now}°`;
+                document.getElementById("feels-like1").innerText = `Feels like: ${feels_like}°`;
                 document.getElementById("uv-index1").innerText = `UV Index: ${uv_index}`;
                 document.getElementById("description1").innerText = `Description: ${description}`;
                 document.getElementById("wind-speed1").innerText = `Wind: ${wind_speed} kph`;
                 document.getElementById("humidity1").innerText = `Humidity: ${humidity}%`;
                 document.getElementById("sunrise1").innerText = `Sunrise: ${sunrise}`;
                 document.getElementById("sunset1").innerText = `Sunset: ${sunset}`;
+
+                weeklyForecast.forEach((day, index) => {
+                    const dayName = dayNames[index]; 
+                    document.getElementById(`day${index + 1}-max-city1`).innerText = `${dayName} ${day.max_temp}°`;
+                    document.getElementById(`day${index + 1}-min-city1`).innerText = ` ${day.min_temp}°`;
+                  });
+
+
+            
             } else if (cityIndex === 2) {
-                document.getElementById("temp2-08").innerText = `${hourlyTemps[0]}°C`;
-                document.getElementById("temp2-12").innerText = `${hourlyTemps[1]}°C`;
-                document.getElementById("temp2-16").innerText = `${hourlyTemps[2]}°C`;
-                document.getElementById("temp2-20").innerText = `${hourlyTemps[3]}°C`;
-                document.getElementById("temp-now2").innerText = `Current: ${temp_now}°C`;
-                document.getElementById("feels-like2").innerText = `Feels like: ${feels_like}°C`;
+                document.getElementById("temp2-08").innerText = `${hourlyTemps[0]}°`;
+                document.getElementById("temp2-12").innerText = `${hourlyTemps[1]}°`;
+                document.getElementById("temp2-16").innerText = `${hourlyTemps[2]}°`;
+                document.getElementById("temp2-20").innerText = `${hourlyTemps[3]}°`;
+                document.getElementById("temp-now2").innerText = `Current: ${temp_now}°`;
+                document.getElementById("feels-like2").innerText = `Feels like: ${feels_like}°`;
                 document.getElementById("uv-index2").innerText = `UV Index: ${uv_index}`;
                 document.getElementById("description2").innerText = `Description: ${description}`;
                 document.getElementById("wind-speed2").innerText = `Wind: ${wind_speed} kph`;
                 document.getElementById("humidity2").innerText = `Humidity: ${humidity}%`;
                 document.getElementById("sunrise2").innerText = `Sunrise: ${sunrise}`;
-                document.getElementById("sunset2").innerText = `Sunset: ${sunset}`;                
+                document.getElementById("sunset2").innerText = `Sunset: ${sunset}`;
+
+                weeklyForecast.forEach((day, index) => {
+                    const dayName = dayNames[index]; 
+                    document.getElementById(`day${index + 1}-max-city2`).innerText = `${dayName} ${day.max_temp}°`;
+                    document.getElementById(`day${index + 1}-min-city2`).innerText = ` ${day.min_temp}°`;
+                  });
             }
         });
     }
