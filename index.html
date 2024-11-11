@@ -13,57 +13,84 @@
 
 <div class="page-container">
     <header>
-        <h1>Väderappen</h1>
+        <h1 class="header-text">Väderappen</h1>
     </header>
     <main>
-        <div class="weather-top">
+        <div class="top-wrapper">
+        <div class="top-container">
             <section class="weather-top-left">
+                <h1 class="city-1">Haparanda</h1>
                 <h1 class="temperature-1">-27°</h1>
-                <h1>Haparanda</h1>
-                <h2 class="windyness-1">vindhastighet</h2>
-                <h2 class="feels-like-1">känns som</h2>
-                <h2 class="uv-1">UV-index</h2>
-                <h2 class="weather-description-1">väderbeskrivning</h2>
-                <h2 class="humidity-1">luftfuktighet</h2>
-                <h2 class="sunrise-sunset-1">solnedgång, soluppgång</h1>
-                <h2 class=""></h2>
-
             </section>
         
             <section class="weather-top-right">
-            <h1 class="temperature-2">30°</h1>
-            <h1>Norrköping</h1>
-            <h2 class="windyness-2">vindhastighet</h2>
-            <h2 class="feels-like-2">känns som</h2>
-            <h2 class="uv-2">UV-index</h2>
-            <h2 class="weather-description-2">väderbeskrivning</h2>
-            <h2 class="humidity-2">luftfuktighet</h2>
-            <h2 class="sunrise-sunset-2">solnedgång, soluppgång</h1>
-            <h2 class=""></h2>
+                <h1 class="city-2">Norrköping</h1>
+                <h1 class="temperature-2">30°</h1>
+            </section>
+        </div>
+        <button id="theme-switch" class="button-style">toggle</button>
+    </div>
+
+    <div class="center-top-container">
+        <section>
+            <h2 class="weather-1">Dagsprognos Norrköping</h2>
         </section>
 
-        </div>
-    <div class="forecast-day">
         <section>
-            <h2 class="weather-1">Dagsprognos Norrköping</h>
             <h2 class="weather-2">Dagsprognos Haparanda</h2>
         </section>
     </div>
-    <div class="forecast-week">
+
+    <div class="center-bottom-container">
         <section>
             <h2 class="week-temp-1">Veckovis</h2>
+        </section>
+
+        <section>
             <h2 class="week-temp-2">Veckovis</h2>
         </section>
     </div>
+    <div class="bottom-container">
+        <div class="bottom-container-1">
+            <section class="bottom-1-left">
+                <h2 class="feels-like-1">känns som</h2>
+                <h2 class="windyness-1">vindhastighet</h2>
+                <h2 class="uv-1">UV-index</h2>
+            </section>
 
-    <button id="theme-switch" class="button-style">toggle</button>
+            <section class="bottom-1-right">
+                <h2 class="weather-description-1">väderbeskrivning</h2>
+                <h2 class="humidity-1">luftfuktighet</h2>
+                <h2 class="sunrise-1">soluppgång</h2>
+                <h2 class="sunset-1">solnedgång</h2>
+            </section>
+        </div>
+
+        <div class="bottom-container-2">
+            <section class="bottom-2-left">
+                <h2 class="feels-like-2">känns som</h2>
+                <h2 class="windyness-2">vindhastighet</h2>
+                <h2 class="uv-2">UV-index</h2>
+            </section>
+        
+            <section class="bottom-2-right">
+                <h2 class="weather-description-2">väderbeskrivning</h2>
+                <h2 class="humidity-2">luftfuktighet</h2>
+                <h2 class="sunrise-2">soluppgång</h2>
+                <h2 class="sunset-2">solnedgång</h2>
+            </section>
+        </div>
+
+    </div>
+
 
 
     </main>
 
-    <footer>
+<!--     <footer>
         <h3>FÖLJ OSS PÅ SOCIALA MEDIER!</h3>
     </footer>
+     -->
 </div>
 <script src="themeToggle.js"></script>
 </body>
