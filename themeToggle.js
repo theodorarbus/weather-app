@@ -10,14 +10,13 @@ if(savedTheme)
     document.body.classList.toggle(savedTheme);
    
     //Uppdaterar texten på knapen beroende på vilket tema som sparats
- if(savedTheme === "light-theme" )
+ if(savedTheme === "dark-theme")
  {
-    themeToggle.innerText ="Switch to regular theme";
+   themeToggle.innerHTML ='<img src="imgs/sun-icon.svg" alt="sun-icon" class="icon" id="sunIcon">';
  }
  else
  {
-    
-    themeToggle.innerText ="Switch to light-theme";
+    themeToggle.innerHTML = '<img src="imgs/moon-icon.svg" alt="moon-icon" class="icon" id="moonIcon">';
  }
 
 }
@@ -25,9 +24,9 @@ if(savedTheme)
 else
 {
     
-    //Togglar inget eftersom det inte finns något att tema att togla till,
-    localStorage.setItem("theme", "regular-theme");
-    themeToggle.innerText ="Switch to light-theme";
+    document.body.classList.toggle("light-theme");
+    localStorage.setItem("theme", "light-theme");
+    themeToggle.innerHTML = '<img src="imgs/moon-icon.svg" alt="moon-icon" class="icon" id="moonIcon">';
 }
 
 
@@ -35,21 +34,20 @@ themeToggle.addEventListener("click",()=>
 {
    
    document.body.classList.toggle("light-theme");
-   //ingen toggle för det andra temat än då det inte finns 
+   document.body.classList.toggle("dark-theme");
 
    if(document.body.classList.contains("light-theme"))
    {
      localStorage.setItem("theme","light-theme");
-     themeToggle.innerText ="Switch to regular theme";
+     themeToggle.innerHTML = '<img src="imgs/moon-icon.svg" alt="moon-icon" class="icon" id="moonIcon">';
    }
-
+   
    else
    {
-    localStorage.setItem("theme","regular-theme");
-    themeToggle.innerText ="Switch to light theme";
+    localStorage.setItem("theme","dark-theme");
+    themeToggle.innerHTML ='<img src="imgs/sun-icon.svg" alt="sun-icon" class="icon" id="sunIcon">';
 
    }
-
-
+   
 });
 
