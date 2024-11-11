@@ -15,16 +15,27 @@
     <header>
         <h1 class="header-text">Väderappen</h1>
     </header>
+
     <main>
         <div class="top-wrapper">
         <div class="top-container">
             <section class="weather-top-left">
-                <h1 class="city-1">Haparanda</h1>
+                <select id="city1" class="city-dropdown" onchange="handleCityChange(1)">
+                    <option value="Haparanda" selected>Haparanda</option>
+                    <option value="Miami">Miami</option>
+                    <option value="Norrköping">Norrköping</option>
+                    <option value="Yakutsk">Yakutsk</option>
+                </select>
                 <h1 class="temperature-1">-27°</h1>
             </section>
         
-            <section class="weather-top-right">
-                <h1 class="city-2">Norrköping</h1>
+            <section class="weather-top-left">
+                <select id="city2" class="city-dropdown" onchange="handleCityChange(2)">
+                        <option value="Norrköping" selected>Norrköping</option>
+                        <option value="Miami">Miami</option>
+                        <option value="Haparanda">Haparanda</option>
+                        <option value="Yakutsk">Yakutsk</option>
+                    </select>
                 <h1 class="temperature-2">30°</h1>
             </section>
         </div>
@@ -36,11 +47,11 @@
 
     <div class="center-top-container">
         <section>
-            <h2 class="weather-1">Dagsprognos Norrköping</h2>
+            <h2 class="weather-1">Dagsprognos Haparanda</h2>
         </section>
 
         <section>
-            <h2 class="weather-2">Dagsprognos Haparanda</h2>
+            <h2 class="weather-2">Dagsprognos Norrköping</h2>
         </section>
     </div>
 
