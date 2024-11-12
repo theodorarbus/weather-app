@@ -26,14 +26,16 @@ body {
     box-sizing: border-box;
     cursor: pointer;
 }
-
 .temperature-1, .temperature-2 {
     font-size: 6vw;
     font-weight: 400;
     padding-left: 10px;
     padding-bottom: 30px;
+    align-self: center;
 }
-
+.weather-description-1, .weather-description-2 {
+    align-self: center;
+}
 .city-1, .city-2 {
     font-size: 3.5vw;
     padding-top: 30px;
@@ -287,7 +289,6 @@ h1, h2 {
 {
     transform: scale(1.15); 
 }
-
 #sunIcon
 {
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
@@ -319,7 +320,7 @@ h1, h2 {
 
 .light-theme .city-dropdown
 {
-    font-size: 1.6rem; 
+    font-size: 2.6rem; 
     width: 100%;
     border: none;
     background: transparent;
@@ -336,7 +337,7 @@ h1, h2 {
 
 .dark-theme .city-dropdown
 {
-    font-size: 1.6rem; 
+    font-size: 2.6rem; 
     width: 100%;
     border: none;
     background: transparent;
@@ -350,7 +351,9 @@ h1, h2 {
     padding: 10px 0;
 
 }
-
+.dark-theme .city-dropdown option {
+    color: #434647;
+}
 .daily-Forecast1{
 flex-direction: row;
 }
