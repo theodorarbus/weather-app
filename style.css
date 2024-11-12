@@ -64,14 +64,20 @@ body {
     height: 60px;   
 }
     
+.api-container-1, .api-container-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
 
 .center-top-container > section
 {
-    height: 10vh;
+    height: auto;
     width: 30vw;
-    justify-content: flex-start;
+    justify-content: space-around;
     font-size: 1vw;
-
+    flex-direction: column;
 }
 
 .center-bottom-container > section {
@@ -83,8 +89,11 @@ body {
 }
 .center-bottom-container
 {
-  max-width: fit-content;
-  
+  /* max-width: fit-content; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ 
   
 }
 
@@ -107,6 +116,7 @@ body {
     margin-top: 25px;
     margin-right: 12px;
     padding: 0;
+    padding-right: 20px;
 }
 
 
@@ -125,6 +135,7 @@ body {
     margin-top: 25px;
     margin-right: 12px;
     padding: 0;
+    padding-right: 20px;
 }
 
 
@@ -155,7 +166,7 @@ body.light-theme {
     animation: moveGradient 10s infinite alternate;
     animation-iteration-count: infinite;
     transition: 2s;
-    color: rgba(0, 0, 0, 0.7);
+    color: black;
 }
 
 
@@ -191,12 +202,7 @@ body.dark-theme {
     }
 }
 
-.page-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    align-items: center;
-}
+
 
 header {
     position: relative;
@@ -238,13 +244,6 @@ header {
 }
 */
 
-main {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    justify-content: center;
-    justify-content: flex-start;
-}
 
 section {
     border: none;
@@ -252,7 +251,7 @@ section {
     justify-content: center;
     border-radius: 20px;
     margin: 20px;
-    padding: 0 40px;
+    padding: 0 40px; 
     flex-direction: column;
     -webkit-box-shadow:0px 0px 11px 3px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 0px 11px 3px rgba(0, 0, 0, 0.2);
@@ -318,8 +317,8 @@ h1, h2 {
     text-align: right;
 }
 
-
-.city-dropdown {
+.light-theme .city-dropdown
+{
     font-size: 1.6rem; 
     width: 100%;
     border: none;
@@ -332,7 +331,26 @@ h1, h2 {
     -webkit-appearance: none;
     text-align-last: center;
     padding: 10px 0;
+
 }
+
+.dark-theme .city-dropdown
+{
+    font-size: 1.6rem; 
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    text-align-last: center;
+    padding: 10px 0;
+
+}
+
 .daily-Forecast1{
 flex-direction: row;
 }
@@ -342,11 +360,21 @@ flex-direction: row;
 .week-temp-1
 {
   position: absolute;
+  
 
 }
 .week-temp-2
 {
   position: absolute;
+  
 }
 
 
+.week-1-content
+{
+    max-width: fit-content;
+}
+.week-2-content
+{
+ max-width: fit-content;
+}
