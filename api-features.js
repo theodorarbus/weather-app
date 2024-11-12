@@ -138,6 +138,7 @@ function updateCityTemperature(city, cityIndex) {
         const city2 = document.getElementById("city2").value;
 
         //sparar de valda städerna i localStorage för att komma ihåg dom när man laddar om sidan
+        
         localStorage.setItem("city1", city1);
         localStorage.setItem("city2", city2);
     
@@ -171,12 +172,23 @@ function updateCityTemperature(city, cityIndex) {
         document.getElementById("city1").value = savedCity1 || ""; 
         document.getElementById("city2").value = savedCity2 || "";  
     
-        updateOtherDropdown("city2", savedCity1);
-        updateOtherDropdown("city1", savedCity2);
+
+        if(!savedCity1)
+        {
+            document.getElementById("city1").innerHTML = '<option value="">Välj stad</option>' + document.getElementById("city1").innerHTML;
+        }
+
+        if(!savedCity1)
+        {
+            document.getElementById("city2").innerHTML = '<option value="">Välj stad</option>' + document.getElementById("city2").innerHTML;
+        }
     
+        updateOtherDropdown("city1",savedCity1);
+        updateOtherDropdown("city1",savedCity2);
+
         // Uppdatera temperaturdata för sparade val
-        updateCityTemperature(savedCity1, 1) || "Miami";
-        updateCityTemperature(savedCity2, 2) || "Haparanda";
+         updateCityTemperature(savedCity1, 1);
+         updateCityTemperature(savedCity2, 2);
     }
     
     // Kör loadSavedCities när sidan laddats klart
