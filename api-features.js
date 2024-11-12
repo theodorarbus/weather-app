@@ -102,7 +102,8 @@ function updateCityTemperature(city, cityIndex) {
                     //hämtar veckodagens namn från dayNames arrayen baserat på index
                     const dayName = dayNames[index];
                     //uppdaterar max & min temperatur för dagen 
-                    document.getElementById(`day${index + 1}-max-city1`).innerText = `${dayName} ${Math.round(day.max_temp)}°`;
+                    document.getElementById(`day${index + 1}-day-city1`).innerText = `${dayName}`;
+                    document.getElementById(`day${index + 1}-max-city1`).innerText = `${Math.round(day.max_temp)}°`;
                     document.getElementById(`day${index + 1}-min-city1`).innerText = ` ${Math.round(day.min_temp)}°`;
                   });
 
@@ -124,7 +125,8 @@ function updateCityTemperature(city, cityIndex) {
 
                 weeklyForecast.forEach((day, index) => {
                     const dayName = dayNames[index]; 
-                    document.getElementById(`day${index + 1}-max-city2`).innerText = `${dayName} ${Math.round(day.max_temp)}°`;
+                    document.getElementById(`day${index + 1}-day-city2`).innerText = `${dayName}`;
+                    document.getElementById(`day${index + 1}-max-city2`).innerText = `${Math.round(day.max_temp)}°`;
                     document.getElementById(`day${index + 1}-min-city2`).innerText = ` ${Math.round(day.min_temp)}°`;
                   });
             }
