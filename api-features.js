@@ -84,48 +84,48 @@ function updateCityTemperature(city, cityIndex) {
         const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset, weeklyForecast } = weatherData;
             // lägger in temperaturerna på den stad som är vald i den vänstra dropdown menyn.
             if (cityIndex === 1) {
-                document.getElementById("temp1-08").innerText = `${hourlyTemps[0]}°`;
-                document.getElementById("temp1-12").innerText = `${hourlyTemps[1]}°`;
-                document.getElementById("temp1-16").innerText = `${hourlyTemps[2]}°`;
-                document.getElementById("temp1-20").innerText = `${hourlyTemps[3]}°`;
-                document.getElementById("temp-now1").innerText = `Current: ${temp_now}°`;
-                document.getElementById("feels-like1").innerText = `Feels like: ${feels_like}°`;
-                document.getElementById("uv-index1").innerText = `UV Index: ${uv_index}`;
-                document.getElementById("description1").innerText = `Description: ${description}`;
-                document.getElementById("wind-speed1").innerText = `Wind: ${wind_speed} kph`;
-                document.getElementById("humidity1").innerText = `Humidity: ${humidity}%`;
-                document.getElementById("sunrise1").innerText = `Sunrise: ${sunrise}`;
-                document.getElementById("sunset1").innerText = `Sunset: ${sunset}`;
+                document.getElementById("temp1-08").innerText = `${Math.round(hourlyTemps[0])}°`;
+                document.getElementById("temp1-12").innerText = `${Math.round(hourlyTemps[1])}°`;
+                document.getElementById("temp1-16").innerText = `${Math.round(hourlyTemps[2])}°`;
+                document.getElementById("temp1-20").innerText = `${Math.round(hourlyTemps[3])}°`;
+                document.getElementById("temp-now1").innerText = `${Math.round(temp_now)}°`;
+                document.getElementById("feels-like1").innerText = `Känns som: ${Math.round(feels_like)}°`;
+                document.getElementById("uv-index1").innerText = `UV Index: ${Math.round(uv_index)}`;
+                document.getElementById("description1").innerText = `${description}`;
+                document.getElementById("wind-speed1").innerText = `Vind: ${Math.round(wind_speed)} kph`;
+                document.getElementById("humidity1").innerText = `Luftfuktighet: ${humidity}%`;
+                document.getElementById("sunrise1").innerText = `Soluppgång: ${sunrise}`;
+                document.getElementById("sunset1").innerText = `Solnedgång: ${sunset}`;
 
                 //itererar genom weeklyForecast för att uppdatera väderinformation för varje dag
                 weeklyForecast.forEach((day, index) => {
                     //hämtar veckodagens namn från dayNames arrayen baserat på index
                     const dayName = dayNames[index];
                     //uppdaterar max & min temperatur för dagen 
-                    document.getElementById(`day${index + 1}-max-city1`).innerText = `${dayName} ${day.max_temp}°`;
-                    document.getElementById(`day${index + 1}-min-city1`).innerText = ` ${day.min_temp}°`;
+                    document.getElementById(`day${index + 1}-max-city1`).innerText = `${dayName} ${Math.round(day.max_temp)}°`;
+                    document.getElementById(`day${index + 1}-min-city1`).innerText = ` ${Math.round(day.min_temp)}°`;
                   });
 
 
             // lägger in temperaturerna på den stad som är vald i den högra dropdown menyn.
             } else if (cityIndex === 2) {
-                document.getElementById("temp2-08").innerText = `${hourlyTemps[0]}°`;
-                document.getElementById("temp2-12").innerText = `${hourlyTemps[1]}°`;
-                document.getElementById("temp2-16").innerText = `${hourlyTemps[2]}°`;
-                document.getElementById("temp2-20").innerText = `${hourlyTemps[3]}°`;
-                document.getElementById("temp-now2").innerText = `Current: ${temp_now}°`;
-                document.getElementById("feels-like2").innerText = `Feels like: ${feels_like}°`;
+                document.getElementById("temp2-08").innerText = `${Math.round(hourlyTemps[0])}°`;
+                document.getElementById("temp2-12").innerText = `${Math.round(hourlyTemps[1])}°`;
+                document.getElementById("temp2-16").innerText = `${Math.round(hourlyTemps[2])}°`;
+                document.getElementById("temp2-20").innerText = `${Math.round(hourlyTemps[3])}°`;
+                document.getElementById("temp-now2").innerText = `${Math.round(temp_now)}°`;
+                document.getElementById("feels-like2").innerText = `Känns som: ${Math.round(feels_like)}°`;
                 document.getElementById("uv-index2").innerText = `UV Index: ${uv_index}`;
-                document.getElementById("description2").innerText = `Description: ${description}`;
-                document.getElementById("wind-speed2").innerText = `Wind: ${wind_speed} kph`;
-                document.getElementById("humidity2").innerText = `Humidity: ${humidity}%`;
-                document.getElementById("sunrise2").innerText = `Sunrise: ${sunrise}`;
-                document.getElementById("sunset2").innerText = `Sunset: ${sunset}`;
+                document.getElementById("description2").innerText = `${description}`;
+                document.getElementById("wind-speed2").innerText = `Vind: ${Math.round(wind_speed)} kph`;
+                document.getElementById("humidity2").innerText = `Luftfuktighet: ${humidity}%`;
+                document.getElementById("sunrise2").innerText = `Soluppgång: ${sunrise}`;
+                document.getElementById("sunset2").innerText = `Solnedgång: ${sunset}`;
 
                 weeklyForecast.forEach((day, index) => {
                     const dayName = dayNames[index]; 
-                    document.getElementById(`day${index + 1}-max-city2`).innerText = `${dayName} ${day.max_temp}°`;
-                    document.getElementById(`day${index + 1}-min-city2`).innerText = ` ${day.min_temp}°`;
+                    document.getElementById(`day${index + 1}-max-city2`).innerText = `${dayName} ${Math.round(day.max_temp)}°`;
+                    document.getElementById(`day${index + 1}-min-city2`).innerText = ` ${Math.round(day.min_temp)}°`;
                   });
             }
         });

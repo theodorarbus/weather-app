@@ -274,3 +274,12 @@ h1, h2 {
     text-align-last: center;
     padding: 10px 0;
 }
+.daily-Forecast1{
+flex-direction: row;
+}
+.daily-Forecast2{
+    flex-direction: row;
+}
+.weather-1{
+    
+}

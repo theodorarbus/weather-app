@@ -1,112 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="page-container">
-    <header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <script src="api-features.js"></script>
+  <body>
+    <div class="page-container">
+      <header>
         <h1 class="header-text">Väderappen</h1>
-    </header>
+      </header>
 
-    <main>
+      <main>
         <div class="top-wrapper">
-        <div class="top-container">
+          <div class="top-container">
             <section class="weather-top-left">
-                <select id="city1" class="city-dropdown" onchange="handleCityChange(1)">
-                    <option value="Haparanda" selected>Haparanda</option>
-                    <option value="Miami">Miami</option>
-                    <option value="Norrköping">Norrköping</option>
-                    <option value="Yakutsk">Yakutsk</option>
-                </select>
-                <h1 class="temperature-1">-27°</h1>
+              <select
+                id="city1"
+                class="city-dropdown"
+                onchange="handleCityChange(1)"
+              >
+                <option value="Haparanda" selected>Haparanda</option>
+                <option value="Miami">Miami</option>
+                <option value="Norrköping">Norrköping</option>
+                <option value="Yakutsk">Yakutsk</option>
+              </select>
+              <h1 id="temp-now1" class="temperature-1"></h1>
+              <h2 id="description1" class="weather-description-1"></h2>
             </section>
-        
+
             <section class="weather-top-left">
-                <select id="city2" class="city-dropdown" onchange="handleCityChange(2)">
-                        <option value="Norrköping" selected>Norrköping</option>
-                        <option value="Miami">Miami</option>
-                        <option value="Haparanda">Haparanda</option>
-                        <option value="Yakutsk">Yakutsk</option>
-                    </select>
-                <h1 class="temperature-2">30°</h1>
+              <select
+                id="city2"
+                class="city-dropdown"
+                onchange="handleCityChange(2)"
+              >
+                <option value="Norrköping" selected>Norrköping</option>
+                <option value="Miami">Miami</option>
+                <option value="Haparanda">Haparanda</option>
+                <option value="Yakutsk">Yakutsk</option>
+              </select>
+              <h1 id="temp-now2" class="temperature-2"></h1>
+              <h2 id="description2" class="weather-description-2"></h2>
             </section>
+          </div>
+          <button id="theme-switch" class="button-style">
+            <img
+              src="imgs/sun-icon.svg"
+              alt="sun-icon"
+              id="sunIcon"
+              class="icon"
+            />
+            <img
+              src="imgs/moon-icon.svg"
+              alt="moon-icon"
+              id="moonIcon"
+              class="icon"
+            />
+          </button>
         </div>
-        <button id="theme-switch" class="button-style">
-            <img src="imgs/sun-icon.svg" alt="sun-icon" id="sunIcon" class="icon">
-            <img src="imgs/moon-icon.svg" alt="moon-icon" id="moonIcon" class="icon">
-        </button>
-    </div>
 
-    <div class="center-top-container">
-        <section>
-            <h2 class="weather-1">Dagsprognos Haparanda</h2>
-        </section>
+        <div class="center-top-container">
+          <section id="city1-temperatures" class="daily-Forecast1">
+            <h2 class="weather-1">Dagsprognos</h2>
+            <p>08:00<span id="temp1-08">-</span></p>
+            <p>12:00<span id="temp1-12">-</span></p>
+            <p>16:00<span id="temp1-16">-</span></p>
+            <p>20:00<span id="temp1-20">-</span></p>
+          </section>
 
-        <section>
-            <h2 class="weather-2">Dagsprognos Norrköping</h2>
-        </section>
-    </div>
+          <section id="city2-temperatures" class="daily-Forecast2">
+            <h2 class="weather-2">Dagsprognos</h2>
+            <p>08:00<span id="temp2-08">-</span></p>
+            <p>12:00<span id="temp2-12">-</span></p>
+            <p>16:00<span id="temp2-16">-</span></p>
+            <p>20:00<span id="temp2-20">-</span></p>
+          </section>
+        </div>
 
-    <div class="center-bottom-container">
-        <section>
+        <div class="center-bottom-container">
+          <section>
             <h2 class="week-temp-1">Veckovis</h2>
-        </section>
+            <p id="day1-max-city1"></p>
+            <p id="day1-min-city1"></p>
+            <p id="day2-max-city1"></p>
+            <p id="day2-min-city1"></p>
+            <p id="day3-max-city1"></p>
+            <p id="day3-min-city1"></p>
+            <p id="day4-max-city1"></p>
+            <p id="day4-min-city1"></p>
+            <p id="day5-max-city1"></p>
+            <p id="day5-min-city1"></p>
+            <p id="day6-max-city1"></p>
+            <p id="day6-min-city1"></p>
+            <p id="day7-max-city1"></p>
+            <p id="day7-min-city1"></p>
+          </section>
 
-        <section>
+          <section>
             <h2 class="week-temp-2">Veckovis</h2>
-        </section>
-    </div>
-    <div class="bottom-container">
-        <div class="bottom-container-1">
+            <p id="day1-max-city2"></p>
+            <p id="day1-min-city2"></p>
+            <p id="day2-max-city2"></p>
+            <p id="day2-min-city2"></p>
+            <p id="day3-max-city2"></p>
+            <p id="day3-min-city2"></p>
+            <p id="day4-max-city2"></p>
+            <p id="day4-min-city2"></p>
+            <p id="day5-max-city2"></p>
+            <p id="day5-min-city2"></p>
+            <p id="day6-max-city2"></p>
+            <p id="day6-min-city2"></p>
+            <p id="day7-max-city2"></p>
+            <p id="day7-min-city2"></p>
+          </section>
+        </div>
+        <div class="bottom-container">
+          <div class="bottom-container-1">
             <section class="bottom-1-left">
-                <h2 class="feels-like-1">känns som</h2>
-                <h2 class="windyness-1">vindhastighet</h2>
-                <h2 class="uv-1">UV-index</h2>
+              <h2 id="feels-like1" class="feels-like-1">känns som</h2>
+              <h2 id="wind-speed1" class="windyness-1">vindhastighet</h2>
+              <h2 id="uv-index1" class="uv-1">UV-index</h2>
             </section>
 
             <section class="bottom-1-right">
-                <h2 class="weather-description-1">väderbeskrivning</h2>
-                <h2 class="humidity-1">luftfuktighet</h2>
-                <h2 class="sunrise-1">soluppgång</h2>
-                <h2 class="sunset-1">solnedgång</h2>
+              <h2 id="humidity1" class="humidity-1">luftfuktighet</h2>
+              <h2 id="sunrise1" class="sunrise-1">soluppgång</h2>
+              <h2 id="sunset1" class="sunset-1">solnedgång</h2>
             </section>
-        </div>
+          </div>
 
-        <div class="bottom-container-2">
+          <div class="bottom-container-2">
             <section class="bottom-2-left">
-                <h2 class="feels-like-2">känns som</h2>
-                <h2 class="windyness-2">vindhastighet</h2>
-                <h2 class="uv-2">UV-index</h2>
+              <h2 id="feels-like2" class="feels-like-2">känns som</h2>
+              <h2 id="wind-speed2" class="windyness-2">vindhastighet</h2>
+              <h2 id="uv-index2" class="uv-2">UV-index</h2>
             </section>
-        
+
             <section class="bottom-2-right">
-                <h2 class="weather-description-2">väderbeskrivning</h2>
-                <h2 class="humidity-2">luftfuktighet</h2>
-                <h2 class="sunrise-2">soluppgång</h2>
-                <h2 class="sunset-2">solnedgång</h2>
+              <h2 id="humidity2" class="humidity-2">luftfuktighet</h2>
+              <h2 id="sunrise2" class="sunrise-2">soluppgång</h2>
+              <h2 id="sunset2" class="sunset-2">solnedgång</h2>
             </section>
+          </div>
         </div>
+      </main>
 
-    </div>
-
-
-
-
-    </main>
-
-<!--     <footer>
+      <!--     <footer>
         <h3>FÖLJ OSS PÅ SOCIALA MEDIER!</h3>
     </footer>
      -->
-</div>
-<script src="themeToggle.js"></script>
-</body>
+    </div>
+    <script src="themeToggle.js"></script>
+  </body>
 </html>
