@@ -1,10 +1,15 @@
+// Skapar en tom array där vi lagrar dagarna i den ordning de kommer när vi gör vårat api-anrop
 const dayNames = [];
+// Skapar ett nytt datumobjekt för dagens datum när vi gör vårat api-anrop
 const currentDate = new Date();
+// Skapar en array där index 0 är söndag och 6 lördag
 const daysOfWeek = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"];
 
-// Lägg till dagarna från idag och framåt
+//loopar igenom de 7 kommande dagarna från dagens datum
 for (let i = 0; i < 7; i++) {
+  // Beräknar index för varje veckodag de 7 kommande dagarna, alltså så att vi vet om de är "Sön", "Mån" etc
   const nextDayIndex = (currentDate.getDay() + i) % 7;
+  //Fyller arrayen med 7 veckodagar så ordningen är korrekt, börjar med vad det är för dag idag.
   dayNames.push(daysOfWeek[nextDayIndex]);
 }
 //sparar latitud och longitud för varje stad i ett objekt där nycklarna är stadens namn.
@@ -39,7 +44,7 @@ function fetchCityWeather(city) {
                     // Om inget objekt hittas så returneras undefined för den timmen. 
                     return hourData && hourData.temp_c;  
                 });
-
+                // En array av väderprognoser för veckan hämtar min och max temp för varje dag
                 const weeklyForecast = data.forecast.forecastday.map(day => ({
                     date: day.date,
                     max_temp: day.day.maxtemp_c,
@@ -71,11 +76,13 @@ function fetchCityWeather(city) {
         .catch(error => console.error("Error fetching city data:", error));
 }
 
+// Funktion för att uppdatera väderdata för specifik stad.
 function updateCityTemperature(city, cityIndex) {
-   
+   // Anropar fetchCityWeather-funktionen för att hämta väderdata
     fetchCityWeather(city).then(weatherData => {
+        // Destrukturerar väderdata-objektet för att extrahera relevant data (så att man inte behöver skriva tex "Description: ${weatherData.description}")
         const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset, weeklyForecast } = weatherData;
-            // lägger in temperaturerna på den stad som är vald i dropdown menyn.
+            // lägger in temperaturerna på den stad som är vald i den vänstra dropdown menyn.
             if (cityIndex === 1) {
                 document.getElementById("temp1-08").innerText = `${hourlyTemps[0]}°`;
                 document.getElementById("temp1-12").innerText = `${hourlyTemps[1]}°`;
@@ -90,14 +97,17 @@ function updateCityTemperature(city, cityIndex) {
                 document.getElementById("sunrise1").innerText = `Sunrise: ${sunrise}`;
                 document.getElementById("sunset1").innerText = `Sunset: ${sunset}`;
 
+                //itererar genom weeklyForecast för att uppdatera väderinformation för varje dag
                 weeklyForecast.forEach((day, index) => {
-                    const dayName = dayNames[index]; 
+                    //hämtar veckodagens namn från dayNames arrayen baserat på index
+                    const dayName = dayNames[index];
+                    //uppdaterar max & min temperatur för dagen 
                     document.getElementById(`day${index + 1}-max-city1`).innerText = `${dayName} ${day.max_temp}°`;
                     document.getElementById(`day${index + 1}-min-city1`).innerText = ` ${day.min_temp}°`;
                   });
 
 
-            
+            // lägger in temperaturerna på den stad som är vald i den högra dropdown menyn.
             } else if (cityIndex === 2) {
                 document.getElementById("temp2-08").innerText = `${hourlyTemps[0]}°`;
                 document.getElementById("temp2-12").innerText = `${hourlyTemps[1]}°`;
@@ -121,9 +131,11 @@ function updateCityTemperature(city, cityIndex) {
         });
     }
     function handleCityChange(cityIndex) {
+        //hämtar de valda städerna från dropdown-menyn
         const city1 = document.getElementById("city1").value;
         const city2 = document.getElementById("city2").value;
 
+        //sparar de valda städerna i localStorage för att komma ihåg dom när man laddar om sidan
         localStorage.setItem("city1", city1);
         localStorage.setItem("city2", city2);
     
@@ -148,21 +160,24 @@ function updateCityTemperature(city, cityIndex) {
         }
     }
     
+    // Funktion för att ladda de sparade städerna från localStorage
     function loadSavedCities() {
         const savedCity1 = localStorage.getItem("city1") 
         const savedCity2 = localStorage.getItem("city2") 
+        
+        //sätter värdet på dropdownmenyerna till de sparade städerna eller lämnar dom tomma om inga städer sparats
+        document.getElementById("city1").value = savedCity1 || ""; 
+        document.getElementById("city2").value = savedCity2 || "";  
     
-        document.getElementById("city1").value = savedCity1 || "Miami";  // Standardstad
-        document.getElementById("city2").value = savedCity2 || "Haparanda";  // Standardstad
-    
-        updateOtherDropdown("city2", savedCity1) || "Miami";
-        updateOtherDropdown("city1", savedCity2) || "Haparanda";
+        updateOtherDropdown("city2", savedCity1);
+        updateOtherDropdown("city1", savedCity2);
     
         // Uppdatera temperaturdata för sparade val
         updateCityTemperature(savedCity1, 1) || "Miami";
         updateCityTemperature(savedCity2, 2) || "Haparanda";
     }
     
+    // Kör loadSavedCities när sidan laddats klart
     document.addEventListener("DOMContentLoaded", function() {
         loadSavedCities();  // Ladda de sparade städerna vid sidladdning
     });
