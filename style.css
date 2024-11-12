@@ -65,14 +65,72 @@ body {
 }
     
 
-.center-top-container > section,
-.center-bottom-container > section {
+.center-top-container > section
+{
     height: 10vh;
     width: 30vw;
     justify-content: flex-start;
     font-size: 1vw;
 
 }
+
+.center-bottom-container > section {
+    
+    
+  font-size: 1vw;
+  flex-direction: row;
+  
+}
+.center-bottom-container
+{
+  max-width: fit-content;
+  
+  
+}
+
+
+.week-temp-1 
+{
+ align-self: self-start;
+ 
+}
+.city1-day1-temp,
+.city1-day2-temp,
+.city1-day3-temp,
+.city1-day4-temp,
+.city1-day5-temp,
+.city1-day6-temp,
+.city1-day7-temp
+{
+    
+    flex-direction: column;
+    margin-top: 25px;
+    margin-right: 12px;
+    padding: 0;
+}
+
+
+
+
+.city2-day1-temp,
+.city2-day2-temp,
+.city2-day3-temp,
+.city2-day4-temp,
+.city2-day5-temp,
+.city2-day6-temp,
+.city2-day7-temp
+{
+    
+    flex-direction: column;
+    margin-top: 25px;
+    margin-right: 12px;
+    padding: 0;
+}
+
+
+
+
+
  
 .bottom-container-1,
 .bottom-container-2 {
@@ -137,6 +195,7 @@ body.dark-theme {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    align-items: center;
 }
 
 header {
@@ -280,6 +339,14 @@ flex-direction: row;
 .daily-Forecast2{
     flex-direction: row;
 }
-.weather-1{
-    
+.week-temp-1
+{
+  position: absolute;
+
 }
+.week-temp-2
+{
+  position: absolute;
+}
+
+
