@@ -17,7 +17,7 @@ const cities = {
     "Miami": { lat: 25.761681, lon: -80.191788 },
     "Haparanda": { lat: 65.8335, lon: 24.1333 },
     "Norrköping": { lat: 58.5953, lon: 16.1830 },
-    "Yakutsk": { lat: 62.035454, lon: 129.675476 }
+    "Yakutsk": { lat: 62.035454, lon: 129.675476}
 };
 
 /*
@@ -33,27 +33,32 @@ function fetchCityWeather(city) {
                 // Hämtar timdata för första dagen i väderprognosen
                 const hourlyData = data.forecast.forecastday[0].hour;
                 // skapar en Array med de specifika timmar vi vill hämta temperaturen för
-                const selectedHours = [8, 12, 16, 20];
+                const selectedHours = [6, 8, 10, 12, 14, 16, 18];
 
                 // Skapar en ny array (hourlyTemps) genom att använda map-funktionen 
                 // Den baseras på det urvalet vi gjort i selectedHours
                 const hourlyTemps = selectedHours.map(hour => {
                     // Använder find för att hitta objekt i första dagen i väderprognosen som matchar de timmar vi valt
                     const hourData = hourlyData.find(h => new Date(h.time).getHours() === hour);
+                    
                     // När ett objekt hittas returneras temperaturen för den timmen
                     // Om inget objekt hittas så returneras undefined för den timmen. 
-                    return hourData && hourData.temp_c;  
+                    return { temperature: hourData &&  hourData.temp_c,
+                            HourlyIconUrl: hourData && `https:${hourData.condition.icon}`
+                    };
                 });
                 // En array av väderprognoser för veckan hämtar min och max temp för varje dag
                 const weeklyForecast = data.forecast.forecastday.map(day => ({
                     date: day.date,
                     max_temp: day.day.maxtemp_c,
                     min_temp: day.day.mintemp_c,
+                    WeeklyIcon: day.day.condition.icon,
                 }));
                 console.log(weeklyForecast);
                 // Skapar ett objekt "currentWeather" som innehåller aktuell väderinformation (för de valda städerna) som vi ska visa på vår sida
                 const currentWeather = {
                     temp_now: data.current.temp_c,
+                    iconUrl: `https:${data.current.condition.icon}`,
                     feels_like: data.current.feelslike_c,
                     uv_index: data.current.uv,
                     description: data.current.condition.text,
@@ -81,18 +86,29 @@ function updateCityTemperature(city, cityIndex) {
    // Anropar fetchCityWeather-funktionen för att hämta väderdata
     fetchCityWeather(city).then(weatherData => {
         // Destrukturerar väderdata-objektet för att extrahera relevant data (så att man inte behöver skriva tex "Description: ${weatherData.description}")
-        const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset, weeklyForecast } = weatherData;
+        const { hourlyTemps, temp_now, feels_like, uv_index, description, wind_speed, humidity, sunrise, sunset, iconUrl, weeklyForecast } = weatherData;
             // lägger in temperaturerna på den stad som är vald i den vänstra dropdown menyn.
             if (cityIndex === 1) {
-                document.getElementById("temp1-08").innerText = `${Math.round(hourlyTemps[0])}°`;
-                document.getElementById("temp1-12").innerText = `${Math.round(hourlyTemps[1])}°`;
-                document.getElementById("temp1-16").innerText = `${Math.round(hourlyTemps[2])}°`;
-                document.getElementById("temp1-20").innerText = `${Math.round(hourlyTemps[3])}°`;
+                document.getElementById("city1-current-icon").src = iconUrl;
+                document.getElementById("temp1-06").innerText = `${Math.round(hourlyTemps[0].temperature)}°`;
+                document.getElementById("temp1-06-icon").src = hourlyTemps[0].HourlyIconUrl;
+                document.getElementById("temp1-08").innerText = `${Math.round(hourlyTemps[1].temperature)}°`;
+                document.getElementById("temp1-08-icon").src = hourlyTemps[1].HourlyIconUrl;
+                document.getElementById("temp1-10").innerText = `${Math.round(hourlyTemps[2].temperature)}°`;
+                document.getElementById("temp1-10-icon").src = hourlyTemps[2].HourlyIconUrl;
+                document.getElementById("temp1-12").innerText = `${Math.round(hourlyTemps[3].temperature)}°`;
+                document.getElementById("temp1-12-icon").src = hourlyTemps[3].HourlyIconUrl;
+                document.getElementById("temp1-14").innerText = `${Math.round(hourlyTemps[4].temperature)}°`;
+                document.getElementById("temp1-14-icon").src = hourlyTemps[4].HourlyIconUrl;
+                document.getElementById("temp1-16").innerText = `${Math.round(hourlyTemps[5].temperature)}°`;
+                document.getElementById("temp1-16-icon").src = hourlyTemps[5].HourlyIconUrl;
+                document.getElementById("temp1-18").innerText = `${Math.round(hourlyTemps[6].temperature)}°`;
+                document.getElementById("temp1-18-icon").src = hourlyTemps[6].HourlyIconUrl;
                 document.getElementById("temp-now1").innerText = `${Math.round(temp_now)}°`;
                 document.getElementById("feels-like1").innerText = `Känns som: ${Math.round(feels_like)}°`;
                 document.getElementById("uv-index1").innerText = `UV Index: ${Math.round(uv_index)}`;
                 document.getElementById("description1").innerText = `${description}`;
-                document.getElementById("wind-speed1").innerText = `Vind: ${Math.round(wind_speed)} kph`;
+                document.getElementById("wind-speed1").innerText = `Vind: ${Math.round(wind_speed)} km/h`;
                 document.getElementById("humidity1").innerText = `Luftfuktighet: ${humidity}%`;
                 document.getElementById("sunrise1").innerText = `Soluppgång: ${sunrise}`;
                 document.getElementById("sunset1").innerText = `Solnedgång: ${sunset}`;
@@ -105,20 +121,32 @@ function updateCityTemperature(city, cityIndex) {
                     document.getElementById(`day${index + 1}-day-city1`).innerText = `${dayName}`;
                     document.getElementById(`day${index + 1}-max-city1`).innerText = `${Math.round(day.max_temp)}°`;
                     document.getElementById(`day${index + 1}-min-city1`).innerText = ` ${Math.round(day.min_temp)}°`;
+                    document.getElementById(`day${index + 1}-icon-city1`).src = `https:${day.WeeklyIcon}`;
                   });
 
 
             // lägger in temperaturerna på den stad som är vald i den högra dropdown menyn.
             } else if (cityIndex === 2) {
-                document.getElementById("temp2-08").innerText = `${Math.round(hourlyTemps[0])}°`;
-                document.getElementById("temp2-12").innerText = `${Math.round(hourlyTemps[1])}°`;
-                document.getElementById("temp2-16").innerText = `${Math.round(hourlyTemps[2])}°`;
-                document.getElementById("temp2-20").innerText = `${Math.round(hourlyTemps[3])}°`;
+                document.getElementById("city2-current-icon").src= iconUrl;
+                document.getElementById("temp2-06").innerText = `${Math.round(hourlyTemps[0].temperature)}°`;
+                document.getElementById("temp2-06-icon").src = hourlyTemps[0].HourlyIconUrl;
+                document.getElementById("temp2-08").innerText = `${Math.round(hourlyTemps[1].temperature)}°`;
+                document.getElementById("temp2-08-icon").src = hourlyTemps[1].HourlyIconUrl;
+                document.getElementById("temp2-10").innerText = `${Math.round(hourlyTemps[2].temperature)}°`;
+                document.getElementById("temp2-10-icon").src = hourlyTemps[2].HourlyIconUrl;
+                document.getElementById("temp2-12").innerText = `${Math.round(hourlyTemps[3].temperature)}°`;
+                document.getElementById("temp2-12-icon").src = hourlyTemps[3].HourlyIconUrl;
+                document.getElementById("temp2-14").innerText = `${Math.round(hourlyTemps[4].temperature)}°`;
+                document.getElementById("temp2-14-icon").src = hourlyTemps[4].HourlyIconUrl;
+                document.getElementById("temp2-16").innerText = `${Math.round(hourlyTemps[5].temperature)}°`;
+                document.getElementById("temp2-16-icon").src = hourlyTemps[5].HourlyIconUrl;
+                document.getElementById("temp2-18").innerText = `${Math.round(hourlyTemps[6].temperature)}°`;
+                document.getElementById("temp2-18-icon").src = hourlyTemps[6].HourlyIconUrl;
                 document.getElementById("temp-now2").innerText = `${Math.round(temp_now)}°`;
                 document.getElementById("feels-like2").innerText = `Känns som: ${Math.round(feels_like)}°`;
                 document.getElementById("uv-index2").innerText = `UV Index: ${uv_index}`;
                 document.getElementById("description2").innerText = `${description}`;
-                document.getElementById("wind-speed2").innerText = `Vind: ${Math.round(wind_speed)} kph`;
+                document.getElementById("wind-speed2").innerText = `Vind: ${Math.round(wind_speed)} km/h`;
                 document.getElementById("humidity2").innerText = `Luftfuktighet: ${humidity}%`;
                 document.getElementById("sunrise2").innerText = `Soluppgång: ${sunrise}`;
                 document.getElementById("sunset2").innerText = `Solnedgång: ${sunset}`;
@@ -128,6 +156,7 @@ function updateCityTemperature(city, cityIndex) {
                     document.getElementById(`day${index + 1}-day-city2`).innerText = `${dayName}`;
                     document.getElementById(`day${index + 1}-max-city2`).innerText = `${Math.round(day.max_temp)}°`;
                     document.getElementById(`day${index + 1}-min-city2`).innerText = ` ${Math.round(day.min_temp)}°`;
+                    document.getElementById(`day${index + 1}-icon-city2`).src = `https:${day.WeeklyIcon}`;
                   });
             }
         });
