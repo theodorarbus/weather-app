@@ -17,14 +17,12 @@ body {
     overflow: hidden;
     height: 30vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     padding: 0;
     width: 30vh;
     line-height: 0px;
     box-sizing: border-box;
-    cursor: pointer;
 }
 .temperature-1, .temperature-2 {
     font-size: 6vw;
@@ -32,9 +30,12 @@ body {
     padding-left: 10px;
     padding-bottom: 30px;
     align-self: center;
+    margin-top: 30px;
 }
 .weather-description-1, .weather-description-2 {
     align-self: center;
+    font-size: clamp(5px, 1vw, 1vw);
+    font-weight: 300;
 }
 .city-1, .city-2 {
     font-size: 3.5vw;
@@ -317,39 +318,26 @@ h1, h2 {
     align-items: flex-end; 
     text-align: right;
 }
-
-.light-theme .city-dropdown
-{
-    font-size: 2.6rem; 
+.city-dropdown{
     width: 100%;
+    font-size: 2.6rem; 
+    padding: 10px 0;
+    text-align: center;
+    appearance: none;
     border: none;
     background: transparent;
-    color: #333;
-    cursor: pointer;
     outline: none;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    text-align-last: center;
-    padding: 10px 0;
-
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.light-theme .city-dropdown
+{
+    color: #333;
 }
 
 .dark-theme .city-dropdown
 {
-    font-size: 2.6rem; 
-    width: 100%;
-    border: none;
-    background: transparent;
     color: #ffffff;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    text-align-last: center;
-    padding: 10px 0;
-
 }
 .dark-theme .city-dropdown option {
     color: #434647;
@@ -380,4 +368,16 @@ flex-direction: row;
 .week-2-content
 {
  max-width: fit-content;
+}
+
+.description-container1, .weather-description-2{
+   
+    display: flex;
+    align-self: center;
+    max-width: fit-content;
+}
+.feels-like-1, .feels-like-2{
+    opacity: 0.5;
+    margin-top: 40px;
+    align-self: center;
 }
