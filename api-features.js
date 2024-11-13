@@ -163,43 +163,38 @@ function updateCityTemperature(city, cityIndex) {
         }
     }
     
-    // Funktion för att ladda de sparade städerna från localStorage
-    function loadSavedCities() {
-        const savedCity1 = localStorage.getItem("city1") 
-        const savedCity2 = localStorage.getItem("city2") 
-        
-        //sätter värdet på dropdownmenyerna till de sparade städerna eller lämnar dom tomma om inga städer sparats
-        // document.getElementById("city1").value = savedCity1 || ""; 
-        // document.getElementById("city2").value = savedCity2 || "";  
-      if(savedCity1)
-      {
-        document.getElementById("city1").value = savedCity1;
-      }
-      else if (!savedCity1)
-      {
-        document.getElementById("city1").innerHTML = '<option value="">Välj stad</option>' + document.getElementById("city1").innerHTML;
-      }
-
-      if(savedCity2)
-      {
-        document.getElementById("city2").value = savedCity2;   
-      }
-      else if(!savedCity2)
-      {
-        document.getElementById("city2").innerHTML = '<option value="">Välj stad</option>' + document.getElementById("city2").innerHTML;
-      }
-
-
-        // updateOtherDropdown("city1",savedCity1);
-        // updateOtherDropdown("city2",savedCity2);
-       
-
-        // Uppdatera temperaturdata för sparade val
-         updateCityTemperature(savedCity1, 1);
-         updateCityTemperature(savedCity2, 2);
-    }
+   // Funktion för att ladda de sparade städerna från localStorage
+   function loadSavedCities() {
+     const savedCity1 = localStorage.getItem("city1") 
+     const savedCity2 = localStorage.getItem("city2") 
     
-    // Kör loadSavedCities när sidan laddats klart
-    document.addEventListener("DOMContentLoaded", function() {
-        loadSavedCities();  // Ladda de sparade städerna vid sidladdning
-    });
+     const city1Dropdown = document.getElementById("city1");
+     const city2Dropdown = document.getElementById("city2");
+     // Om ingen stad är sparad, visa "Välj stad" som standard
+     
+     if (savedCity1) {
+        city1Dropdown.value = savedCity1;
+     } else {
+        city1Dropdown.innerHTML = '<option value="" disabled selected>Välj stad</option>' + city1Dropdown.innerHTML;
+     }
+
+     if (savedCity2)    
+     {
+        city2Dropdown.value = savedCity2;
+     } 
+     else 
+     {
+        city2Dropdown.innerHTML = '<option value="" disabled selected>Välj stad</option>' + city2Dropdown.innerHTML;
+     }
+
+     updateOtherDropdown("city2", savedCity1);
+     updateOtherDropdown("city1", savedCity2);
+     updateCityTemperature(savedCity1 || "", 1);
+     updateCityTemperature(savedCity2 || "", 2);
+
+}
+
+// Kör loadSavedCities när sidan laddats klart
+document.addEventListener("DOMContentLoaded", function() {
+    loadSavedCities();  // Ladda de sparade städerna vid sidladdning
+});
