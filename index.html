@@ -32,8 +32,14 @@
                 <option value="Norrköping">Norrköping</option>
                 <option value="Yakutsk">Yakutsk</option>
               </select>
+              
               <h1 id="temp-now1" class="temperature-1"></h1>
+              <h2 id="feels-like1" class="feels-like-1">känns som</h2>
+              <div class="description-container1">
               <h2 id="description1" class="weather-description-1"></h2>
+              <img src="" id="city1-current-icon" class="current-icon1">
+            </div>
+            
             </section>
 
             <section class="weather-top-left">
@@ -48,7 +54,12 @@
                 <option value="Yakutsk">Yakutsk</option>
               </select>
               <h1 id="temp-now2" class="temperature-2"></h1>
+              <h2 id="feels-like2" class="feels-like-2">känns som</h2>
+              <div class="description-container1">
               <h2 id="description2" class="weather-description-2"></h2>
+              <img src="" id="city2-current-icon" class="current-icon2">
+            </div>
+
             </section>
           </div>
           <button id="theme-switch" class="button-style">
@@ -71,93 +82,139 @@
           <section id="city1-temperatures" class="daily-Forecast1">
             <h2 class="weather-1">Dagsprognos</h2>
             <div class="api-container-1">
-                
+
+            <div class="weather-column">
+            <strong><p>06:00</p></strong>
+            <p id="temp1-06">-</p>
+            <img id="temp1-06-icon" src="" alt="Weather Icon"></div>    
+
             <div class="weather-column">
             <strong><p>08:00</p></strong>
-            <p id="temp1-08">-</p></div>
+            <p id="temp1-08">-</p>
+            <img id="temp1-08-icon" src="" alt="Weather Icon"></div>
+
+            <div class="weather-column">
+            <strong><p>10:00</p></strong>
+            <p id="temp1-10">-</p>
+            <img id="temp1-10-icon" src="" alt="Weather Icon"></div>
 
             <div class="weather-column"> 
               <strong><p>12:00</p></strong> 
-            <p id="temp1-12">-</p></div>
+            <p id="temp1-12">-</p>
+            <img id="temp1-12-icon" src="" alt="Weather Icon"></div>
+
+            <div class="weather-column">
+            <strong><p>14:00</p></strong>
+            <p id="temp1-14">-</p>
+            <img id="temp1-14-icon" src="" alt="Weather Icon"></div>
 
             <div class="weather-column">
               <strong><p>16:00</p></strong>
-            <p id="temp1-16">-</p></div>
+            <p id="temp1-16">-</p>
+            <img id="temp1-16-icon" src="" alt="Weather Icon"></div>
 
             <div class="weather-column">
-              <strong><p>20:00</p></strong>
-            <p id="temp1-20">-</p></div>
+            <strong><p>18:00</p></strong>
+            <p id="temp1-18">-</p>
+            <img id="temp1-18-icon" src="" alt="Weather Icon"></div>
+
             </div>
           </section>
 
           <section id="city2-temperatures" class="daily-Forecast2">
             <h2 class="weather-2">Dagsprognos</h2>
             <div class="api-container-2">
+
+              <div class="weather-column">
+                <strong><p>06:00</p></strong>
+                <p id="temp2-06">-</p>
+                <img id="temp2-06-icon" src="" alt="Weather Icon"></div>    
+    
                 <div class="weather-column">
-                    <strong><p>08:00</p></strong>
-                    <p id="temp2-08">-</p></div>
-        
-                    <div class="weather-column">
-                     <strong><p>12:00</p></strong>
-                    <p id="temp2-12">-</p></div>
-        
-                    <div class="weather-column">
-                     <strong> <p>16:00</p></strong>
-                    <p id="temp2-16">-</p></div>
-        
-                    <div class="weather-column">
-                      <strong><p>20:00</p></strong>
-                    <p id="temp2-20">-</p></div>
+                <strong><p>08:00</p></strong>
+                <p id="temp2-08">-</p>
+                <img id="temp2-08-icon" src="" alt="Weather Icon"></div>
+    
+                <div class="weather-column">
+                <strong><p>10:00</p></strong>
+                <p id="temp2-10">-</p>
+                <img id="temp2-10-icon" src="" alt="Weather Icon"></div>
+    
+                <div class="weather-column"> 
+                  <strong><p>12:00</p></strong> 
+                <p id="temp2-12">-</p>
+                <img id="temp2-12-icon" src="" alt="Weather Icon"></div>
+    
+                <div class="weather-column">
+                <strong><p>14:00</p></strong>
+                <p id="temp2-14">-</p>
+                <img id="temp2-14-icon" src="" alt="Weather Icon"></div>
+    
+                <div class="weather-column">
+                  <strong><p>16:00</p></strong>
+                <p id="temp2-16">-</p>
+                <img id="temp2-16-icon" src="" alt="Weather Icon"></div>
+    
+                <div class="weather-column">
+                <strong><p>18:00</p></strong>
+                <p id="temp2-18">-</p>
+                <img id="temp2-18-icon" src="" alt="Weather Icon"></div>
                     </div>
             </div>
           </section>
         </div>
-
         <div class="center-bottom-container">
           <section class="week-1-content">
-            <h2 class="week-temp-1">Veckovis</h2>
+            <h2 class="week-temp-1">7-Dagars prognos</h2>
           
             
             <div class="city1-day1-temp">
             <strong><p  id="day1-day-city1"></p></strong>
             <p id="day1-max-city1"></p>
             <p id="day1-min-city1"></p>
+            <img src="" alt="" id="day1-icon-city1">
           </div>
 
           <div class="city1-day2-temp">
             <strong><p id="day2-day-city1"></p></strong>
             <p id="day2-max-city1"></p>
             <p id="day2-min-city1"></p>
+            <img src="" alt="" id="day2-icon-city1">
           </div>
 
           <div class="city1-day3-temp">
             <strong><p id="day3-day-city1"></p></strong>
             <p id="day3-max-city1"></p>
             <p id="day3-min-city1"></p>
+            <img src="" alt="" id="day3-icon-city1">
           </div>
 
           <div class="city1-day4-temp">
            <strong> <p id="day4-day-city1"></p></strong>
             <p id="day4-max-city1"></p>
             <p id="day4-min-city1"></p>
+            <img src="" alt="" id="day4-icon-city1">
           </div>
 
           <div class="city1-day5-temp">
             <strong><p id="day5-day-city1"></p></strong>
             <p id="day5-max-city1"></p>
             <p id="day5-min-city1"></p>
+            <img src="" alt="" id="day5-icon-city1">
           </div>
 
           <div class="city1-day6-temp">
             <strong><p id="day6-day-city1"></p></strong>
             <p id="day6-max-city1"></p>
             <p id="day6-min-city1"></p>
+            <img src="" alt="" id="day6-icon-city1">
           </div>
 
           <div class="city1-day7-temp">
             <strong><p id="day7-day-city1"></p></strong>
             <p id="day7-max-city1"></p>
             <p id="day7-min-city1"></p>
+            <img src="" alt="" id="day7-icon-city1">
           </div>
         
           </section>
@@ -169,49 +226,56 @@
            <strong><p id="day1-day-city2"></p></strong>
             <p id="day1-max-city2"></p>
             <p id="day1-min-city2"></p>
+            <img src="" alt="" id="day1-icon-city2">
             </div>
           
           <div class="city2-day2-temp">
            <strong><p id="day2-day-city2"></p></strong>
             <p id="day2-max-city2"></p>
             <p id="day2-min-city2"></p>
+            <img src="" alt="" id="day2-icon-city2">
           </div>
 
           <div class="city2-day3-temp">
            <strong><p id="day3-day-city2"></p></strong>
             <p id="day3-max-city2"></p>
             <p id="day3-min-city2"></p>
+            <img src="" alt="" id="day3-icon-city2">
           </div>
           
           <div class="city2-day4-temp">
            <strong><p id="day4-day-city2"></p></strong>
             <p id="day4-max-city2"></p>
             <p id="day4-min-city2"></p>
+            <img src="" alt="" id="day4-icon-city2">
           </div>
 
           <div class="city2-day5-temp">
            <strong><p id="day5-day-city2"></p></strong>
             <p id="day5-max-city2"></p>
             <p id="day5-min-city2"></p>
+            <img src="" alt="" id="day5-icon-city2">
           </div>
 
           <div class="city2-day6-temp">
             <strong><p id="day6-day-city2"></p></strong>
             <p id="day6-max-city2"></p>
             <p id="day6-min-city2"></p>
+            <img src="" alt="" id="day6-icon-city2">
           </div>
 
           <div class="city2-day7-temp">
            <strong><p id="day7-day-city2"></p></strong>
             <p id="day7-max-city2"></p>
             <p id="day7-min-city2"></p>
+            <img src="" alt="" id="day7-icon-city2">
           </div>
           </section>
         </div>
         <div class="bottom-container">
           <div class="bottom-container-1">
             <section class="bottom-1-left">
-              <h2 id="feels-like1" class="feels-like-1">känns som</h2>
+              
               <h2 id="wind-speed1" class="windyness-1">vindhastighet</h2>
               <h2 id="uv-index1" class="uv-1">UV-index</h2>
             </section>
@@ -225,7 +289,6 @@
 
           <div class="bottom-container-2">
             <section class="bottom-2-left">
-              <h2 id="feels-like2" class="feels-like-2">känns som</h2>
               <h2 id="wind-speed2" class="windyness-2">vindhastighet</h2>
               <h2 id="uv-index2" class="uv-2">UV-index</h2>
             </section>
