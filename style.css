@@ -271,7 +271,6 @@ h1, h2 {
     cursor: pointer;
     margin-bottom: 30px;
     transition: 0.2s;
-
 }
 
 .city-dropdown:hover{
@@ -282,7 +281,7 @@ h1, h2 {
 
 .light-theme .city-dropdown
 {
-    color: #333;
+    color: #ffffff;
 }
 
 .dark-theme .city-dropdown
