@@ -283,13 +283,18 @@ h1, h2 {
 {
     color: #ffffff;
 }
+.light-theme .city-dropdown option
+{
+    background: #71a3d4;
+}
 
 .dark-theme .city-dropdown
 {
     color: #ffffff;
 }
 .dark-theme .city-dropdown option {
-    color: #434647;
+    color: #ffffff;
+    background-color: #04001f;
 }
 .daily-Forecast1{
 flex-direction: row;
