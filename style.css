@@ -13,17 +13,21 @@ body {
     justify-content: center;
 }
 
+
 .weather-top-left, .weather-top-right {
     overflow: hidden;
-    height: 30vh;
+    height: 27vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 0;
-    width: 30vh;
+    width: 27vh;
     line-height: 0px;
     box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.5s ease;
 }
+
+
 .temperature-1, .temperature-2 {
     font-size: 6vw;
     font-weight: 400;
@@ -77,7 +81,7 @@ body {
 .center-top-container > section
 {
     height: auto;
-    width: 30vw;
+    width: 31vw;
     justify-content: space-around;
     font-size: 1vw;
     flex-direction: column;
@@ -86,14 +90,12 @@ body {
 
 .center-bottom-container > section {
     
-    
   font-size: 1vw;
   flex-direction: row;
   
 }
 .center-bottom-container
 {
-  /* max-width: fit-content; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -135,12 +137,6 @@ body {
 .city2-day6-temp,
 .city2-day7-temp
 {
-    
-    /* flex-direction: column;
-    margin-top: 25px;
-    margin-right: 6px;
-    padding: 0;
-    padding-right: 22px; */
 
     flex-direction: column;
     margin-top: 25px;
@@ -150,10 +146,6 @@ body {
     padding-left: 10px ;
 
 }
-
-
-
-
 
  
 .bottom-container-1,
@@ -171,15 +163,16 @@ body {
     justify-content: space-around;
     padding-left: 10px;
 
+
 }
 
 body.light-theme {
-    background: radial-gradient(circle, #f0e38e, #698aab);
+    background: radial-gradient(circle, #deaf6c, #3481ce);
     background-size: 200% 200%;
-    animation: moveGradient 10s infinite alternate;
+    animation: moveGradient 25s infinite alternate;
     animation-iteration-count: infinite;
     transition: 2s;
-    color: black;
+    color: rgb(255, 252, 252);
 }
 
 
@@ -192,17 +185,6 @@ body.dark-theme {
     color: rgba(255, 255, 255, 0.9);
 }
 
-    
-
-/* 
-body.dark-theme {
-    background: radial-gradient(circle, #0c1114, #031629);
-    background-size: 200% 200%;
-    animation: moveGradient 10s infinite alternate;
-    animation-iteration-count: infinite;
-    transition: 2s;
-}
- */
 @keyframes moveGradient {
     0% {
         background-position: 0% 50%;
@@ -216,54 +198,12 @@ body.dark-theme {
 }
 
 
-
-header {
-    position: relative;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-    height: 7vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    }
-
-.header-text {
-    font-size: 7vh;
-    font-weight: 400;
-    color: #000;
-    line-height: 100%;
-    mix-blend-mode: overlay;
-    z-index: 2;
-}
-
-
- /* testar lite ny header
- header {
-    background-color: white;
-    text-align: center;
-    overflow: hidden;
-    height: 9vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header-text {
-    font-size: 7vh;
-    font-weight: 400;
-    
-}
-*/
-
-
 section {
     border: none;
     display: flex;
     justify-content: center;
     border-radius: 20px;
-    margin: 20px;
+    margin: 15px;
     padding: 0 40px; 
     flex-direction: column;
     -webkit-box-shadow:0px 0px 11px 3px rgba(0, 0, 0, 0.2);
@@ -271,16 +211,7 @@ section {
     box-shadow: 0px 0px 11px 3px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
-/* 
-footer {
-    margin-top: auto;
-    text-align: center;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-    height: 3vh;
-    justify-content: center;
-    align-items: center;
-} */
+
 h1, h2 {
     font-weight: 100;
     margin: 0px;
@@ -322,8 +253,6 @@ h1, h2 {
 .weather-top-left {
     align-items: flex-start;
     text-align: left;
-    width: 33vh;
-    height: 33vh;
 }
 
 .weather-top-right {
@@ -341,7 +270,16 @@ h1, h2 {
     outline: none;
     cursor: pointer;
     margin-bottom: 30px;
+    transition: 0.2s;
+
 }
+
+.city-dropdown:hover{
+    transform: scale(1.1);
+    box-shadow: 0, 0, 12px, 12px rgb(0, 0, 0);
+}
+
+
 .light-theme .city-dropdown
 {
     color: #333;
