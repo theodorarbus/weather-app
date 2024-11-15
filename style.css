@@ -13,14 +13,15 @@ body {
 }
 .weather-top-left, .weather-top-right {
     overflow: hidden;
-    height: 30vh;
+    height: 27vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 0;
-    width: 30vh;
+    width: 27vh;
     line-height: 0px;
     box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.5s ease;
 }
 .temperature-1, .temperature-2 {
     font-size: 6vw;
@@ -69,7 +70,7 @@ body {
 .center-top-container > section
 {
     height: auto;
-    width: 30vw;
+    width: 31vw;
     justify-content: space-around;
     font-size: 1vw;
     flex-direction: column;
@@ -77,14 +78,12 @@ body {
 }
 .center-bottom-container > section {
     
-    
   font-size: 1vw;
   flex-direction: row;
   
 }
 .center-bottom-container
 {
-  /* max-width: fit-content; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -126,7 +125,6 @@ body {
     padding: 0;
     padding-right: 5px;
     padding-left: 10px ;
-
 }
 .bottom-container-1,
 .bottom-container-2 {
@@ -141,15 +139,20 @@ body {
     height: 12vh;
     justify-content: space-around;
     padding-left: 10px;
-
 }
 body.light-theme {
-    background: radial-gradient(circle, #f0e38e, #698aab);
+    background: radial-gradient(circle, #deaf6c, #3481ce);
     background-size: 200% 200%;
-    animation: moveGradient 10s infinite alternate;
+    animation: moveGradient 25s infinite alternate;
     animation-iteration-count: infinite;
     transition: 2s;
-    color: black;
+    color: rgb(255, 252, 252);
+}
+body.light-theme .city-dropdown{
+    color: white;
+}
+body.light-theme .city-dropdown option {
+    color: #333;
 }
 body.dark-theme {
     background: radial-gradient(circle, #434647, #04001f);
@@ -175,7 +178,7 @@ section {
     display: flex;
     justify-content: center;
     border-radius: 20px;
-    margin: 20px;
+    margin: 15px;
     padding: 0 40px; 
     flex-direction: column;
     -webkit-box-shadow:0px 0px 11px 3px rgba(0, 0, 0, 0.2);
@@ -218,33 +221,29 @@ h1, h2 {
 .weather-top-left {
     align-items: flex-start;
     text-align: left;
-    width: 33vh;
-    height: 33vh;
 }
 .weather-top-right {
     align-items: flex-end; 
     text-align: right;
 }
-.top-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.city-dropdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.7vw;
-    padding: 10px;
+.city-dropdown{
+    width: 100%;
+    font-size: 1.7vw; 
+    padding: 10px 0;
+    text-align: center;
     appearance: none;
     border: none;
     background: transparent;
     outline: none;
     cursor: pointer;
-    text-align-last: center; 
-    text-align: center;
-    width: auto;
-    margin: 0 auto; 
+    margin-bottom: 30px;
+    transition: 0.2s;
+    padding-bottom: 30px;
+
+}
+.city-dropdown:hover{
+    transform: scale(1.1);
+    box-shadow: 0, 0, 12px, 12px rgb(0, 0, 0);
 }
 .light-theme .city-dropdown
 {
@@ -266,8 +265,6 @@ flex-direction: row;
 .week-temp-1, .week-temp-2
 {
   position: absolute;
-  
-
 }
 .week-1-content, .week-2-content
 {
@@ -390,6 +387,227 @@ flex-direction: row;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8px;
+        width: 100%;
+        padding: 10px;
+    }
+    /* Anpassning av 7-dagarsprognosens enskilda lådor */
+    .city1-day1-temp, .city2-day1-temp,
+    .city1-day2-temp, .city2-day2-temp,
+    .city1-day3-temp, .city2-day3-temp,
+    .city1-day4-temp, .city2-day4-temp,
+    .city1-day5-temp, .city2-day5-temp,
+    .city1-day6-temp, .city2-day6-temp,
+    .city1-day7-temp, .city2-day7-temp {
+        width: 90%;
+        font-size: 3.5vw;
+        text-align: center;
+        padding: 6px 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+    }
+
+    /* Anpassning för bottensektionen i mobilvy */
+    .bottom-container-1, .bottom-container-2 {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .bottom-container-1 > section, .bottom-container-2 > section {
+        width: 90%;
+        font-size: 3vw;
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+    .daily-Forecast1 h2, .daily-Forecast2 h2 {
+        font-size: 4vw;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .api-container-1 .weather-column, .api-container-2 .weather-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        margin: 5px auto;
+        max-width: 85%;
+    }
+
+    .week-temp-1, .week-temp-2 {
+        font-size: 4vw;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-align: center;
+        white-space: nowrap;
+        margin-top: -5px;
+    }
+
+    .button-style {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 3px;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+
+    .button-style > img {
+        width: 30px;
+        height: 30px;
+    }
+
+        
+    /* Layout för dagsprognosens kolumner */
+    .api-container-1, .api-container-2 {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    /* Anpassning för varje tidssektion i dagsprognosen */
+    .weather-column {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-column strong p {
+        margin: 0;
+        font-size: 4vw;
+    }
+
+    .weather-icon-style {
+        width: 25px;
+        height: 25px;
+        margin: 0 10px;
+    }
+
+    .temperature {
+        font-size: 4vw;
+    }
+
+    /* 7-dagarsprognos i två kolumner för mobil */
+    .week-1-content, .week-2-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Anpassning av 7-dagarsprognosens enskilda lådor */
+    .city1-day1-temp, .city2-day1-temp,
+    .city1-day2-temp, .city2-day2-temp,
+    .city1-day3-temp, .city2-day3-temp,
+    .city1-day4-temp, .city2-day4-temp,
+    .city1-day5-temp, .city2-day5-temp,
+    .city1-day6-temp, .city2-day6-temp,
+    .city1-day7-temp, .city2-day7-temp {
+        width: 90%;
+        font-size: 3.5vw;
+        text-align: center;
+        padding: 6px 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+    }
+
+    /* Anpassning för bottensektionen i mobilvy */
+    .bottom-container-1, .bottom-container-2 {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .bottom-container-1 > section, .bottom-container-2 > section {
+        width: 90%;
+        font-size: 3vw;
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+    .daily-Forecast1 h2, .daily-Forecast2 h2 {
+        font-size: 4vw;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .api-container-1 .weather-column, .api-container-2 .weather-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        margin: 5px auto;
+        max-width: 85%;
+    }
+
+    .week-temp-1, .week-temp-2 {
+        font-size: 4vw;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-align: center;
+        white-space: nowrap;
+        margin-top: -5px;
+    }
+
+    .button-style {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 3px;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+
+    .button-style > img {
+        width: 30px;
+        height: 30px;
+    }
+    .weather-column strong p {
+        margin: 0;
+        font-size: 4vw;
+    }
+    .weather-icon-style {
+        width: 25px;
+        height: 25px;
+        margin: 0 10px;
+    }
+    .temperature {
+        font-size: 4vw;
+    }
+    /* 7-dagarsprognos i två kolumner för mobil */
+    .week-1-content, .week-2-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+
 
     }
     /* Anpassning av 7-dagarsprognosens enskilda lådor */
