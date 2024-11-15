@@ -287,7 +287,7 @@ flex-direction: row;
     width: 2.3vw;
     height: auto;
 }
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 431px) {
     /* Förhindrar sidledsskrollning för mobil */
     body, .page-container {
         overflow-x: hidden;
