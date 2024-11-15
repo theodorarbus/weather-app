@@ -330,18 +330,30 @@ h1, h2 {
     align-items: flex-end; 
     text-align: right;
 }
-.city-dropdown{
-    width: 100%;
-    font-size: 1.7vw; 
-    padding: 10px 0;
-    text-align: center;
+.top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.city-dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7vw;
+    padding: 10px;
     appearance: none;
     border: none;
     background: transparent;
     outline: none;
     cursor: pointer;
-    margin-bottom: 30px;
+    text-align-last: center; 
+    text-align: center;
+    width: auto;
+    margin: 0 auto; 
 }
+
+
 .light-theme .city-dropdown
 {
     color: #333;
