@@ -13,21 +13,17 @@ body {
     justify-content: center;
 }
 
-
 .weather-top-left, .weather-top-right {
     overflow: hidden;
-    height: 27vh;
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 0;
-    width: 27vh;
+    width: 30vh;
     line-height: 0px;
     box-sizing: border-box;
-    transition: transform 0.2s ease, box-shadow 0.5s ease;
 }
-
-
 .temperature-1, .temperature-2 {
     font-size: 6vw;
     font-weight: 400;
@@ -81,7 +77,7 @@ body {
 .center-top-container > section
 {
     height: auto;
-    width: 31vw;
+    width: 30vw;
     justify-content: space-around;
     font-size: 1vw;
     flex-direction: column;
@@ -90,12 +86,14 @@ body {
 
 .center-bottom-container > section {
     
+    
   font-size: 1vw;
   flex-direction: row;
   
 }
 .center-bottom-container
 {
+  /* max-width: fit-content; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -137,6 +135,12 @@ body {
 .city2-day6-temp,
 .city2-day7-temp
 {
+    
+    /* flex-direction: column;
+    margin-top: 25px;
+    margin-right: 6px;
+    padding: 0;
+    padding-right: 22px; */
 
     flex-direction: column;
     margin-top: 25px;
@@ -146,6 +150,10 @@ body {
     padding-left: 10px ;
 
 }
+
+
+
+
 
  
 .bottom-container-1,
@@ -163,16 +171,15 @@ body {
     justify-content: space-around;
     padding-left: 10px;
 
-
 }
 
 body.light-theme {
-    background: radial-gradient(circle, #deaf6c, #3481ce);
+    background: radial-gradient(circle, #f0e38e, #698aab);
     background-size: 200% 200%;
-    animation: moveGradient 25s infinite alternate;
+    animation: moveGradient 10s infinite alternate;
     animation-iteration-count: infinite;
     transition: 2s;
-    color: rgb(255, 252, 252);
+    color: black;
 }
 
 
@@ -185,6 +192,17 @@ body.dark-theme {
     color: rgba(255, 255, 255, 0.9);
 }
 
+    
+
+/* 
+body.dark-theme {
+    background: radial-gradient(circle, #0c1114, #031629);
+    background-size: 200% 200%;
+    animation: moveGradient 10s infinite alternate;
+    animation-iteration-count: infinite;
+    transition: 2s;
+}
+ */
 @keyframes moveGradient {
     0% {
         background-position: 0% 50%;
@@ -198,12 +216,54 @@ body.dark-theme {
 }
 
 
+
+header {
+    position: relative;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    }
+
+.header-text {
+    font-size: 7vh;
+    font-weight: 400;
+    color: #000;
+    line-height: 100%;
+    mix-blend-mode: overlay;
+    z-index: 2;
+}
+
+
+ /* testar lite ny header
+ header {
+    background-color: white;
+    text-align: center;
+    overflow: hidden;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-text {
+    font-size: 7vh;
+    font-weight: 400;
+    
+}
+*/
+
+
 section {
     border: none;
     display: flex;
     justify-content: center;
     border-radius: 20px;
-    margin: 15px;
+    margin: 20px;
     padding: 0 40px; 
     flex-direction: column;
     -webkit-box-shadow:0px 0px 11px 3px rgba(0, 0, 0, 0.2);
@@ -211,7 +271,16 @@ section {
     box-shadow: 0px 0px 11px 3px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
-
+/* 
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 3vh;
+    justify-content: center;
+    align-items: center;
+} */
 h1, h2 {
     font-weight: 100;
     margin: 0px;
@@ -253,6 +322,8 @@ h1, h2 {
 .weather-top-left {
     align-items: flex-start;
     text-align: left;
+    width: 33vh;
+    height: 33vh;
 }
 
 .weather-top-right {
@@ -270,22 +341,10 @@ h1, h2 {
     outline: none;
     cursor: pointer;
     margin-bottom: 30px;
-    transition: 0.2s;
 }
-
-.city-dropdown:hover{
-    transform: scale(1.1);
-    box-shadow: 0, 0, 12px, 12px rgb(0, 0, 0);
-}
-
-
 .light-theme .city-dropdown
 {
-    color: #ffffff;
-}
-.light-theme .city-dropdown option
-{
-    background: #71a3d4;
+    color: #333;
 }
 
 .dark-theme .city-dropdown
@@ -293,8 +352,7 @@ h1, h2 {
     color: #ffffff;
 }
 .dark-theme .city-dropdown option {
-    color: #ffffff;
-    background-color: #04001f;
+    color: #434647;
 }
 .daily-Forecast1{
 flex-direction: row;
@@ -343,4 +401,202 @@ flex-direction: row;
 {
     width: 2.3rem ;
     height: 2.3rem;
+}
+
+
+
+
+
+@media only screen and (max-width: 430px) {
+    /* Förhindrar sidledsskrollning för mobil */
+    body, .page-container {
+        overflow-x: hidden;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Anpassar toppsektionen för mobil */
+    .top-wrapper, .top-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    /* Justerar väderbeskrivningens textstorlek */
+    .weather-description-1, .weather-description-2 {
+        font-size: 4vw;
+    }
+
+    /* Gör "Känns som" större i toppsektionen */
+    .feels-like-1, .feels-like-2 {
+        font-size: 4vw;
+        font-weight: 500;
+    }
+
+    /* Storlek och placering av toppsektionens lådor */
+    .weather-top-left, .weather-top-right {
+        width: 45%;
+        margin: 10px 5px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    /* Justerar temperaturen i toppsektionen */
+    .temperature-1, .temperature-2 {
+        font-size: 6vw;
+        font-weight: 600;
+        padding: 5px;
+        color: #ffffff;
+    }
+
+    /* Justerar dropdown-stilen */
+    .city-dropdown {
+        font-size: 5vw;
+        padding: 5px;
+        width: 100%;
+        max-width: 100%;
+        text-align-last: center;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+
+    /* Dagsprognos - Vertikal layout för mobil */
+    .daily-Forecast1, .daily-Forecast2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    /* Layout för dagsprognosens kolumner */
+    .api-container-1, .api-container-2 {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    /* Anpassning för varje tidssektion i dagsprognosen */
+    .weather-column {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Större text för tiderna under dagsprognosen */
+    .weather-column strong p {
+        margin: 0;
+        font-size: 4vw;
+    }
+
+    /* Ikonstorlek för vädret */
+    .weather-icon-style {
+        width: 25px;
+        height: 25px;
+        margin: 0 10px;
+    }
+
+    .temperature {
+        font-size: 4vw;
+    }
+
+    /* 7-dagarsprognos i två kolumner för mobil */
+    .week-1-content, .week-2-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Anpassning av 7-dagarsprognosens enskilda lådor */
+    .city1-day1-temp, .city2-day1-temp,
+    .city1-day2-temp, .city2-day2-temp,
+    .city1-day3-temp, .city2-day3-temp,
+    .city1-day4-temp, .city2-day4-temp,
+    .city1-day5-temp, .city2-day5-temp,
+    .city1-day6-temp, .city2-day6-temp,
+    .city1-day7-temp, .city2-day7-temp {
+        width: 90%;
+        font-size: 3.5vw;
+        text-align: center;
+        padding: 6px 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+    }
+
+    /* Anpassning för bottensektionen i mobilvy */
+    .bottom-container-1, .bottom-container-2 {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .bottom-container-1 > section, .bottom-container-2 > section {
+        width: 90%;
+        font-size: 3vw;
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+    /* Gör "Dagsprognos"-texten mer synlig i mobil */
+    .daily-Forecast1 h2, .daily-Forecast2 h2 {
+        font-size: 4vw;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* Centrering av ljusgråa lådorna i dagsprognosen */
+    .api-container-1 .weather-column, .api-container-2 .weather-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        margin: 5px auto;
+        max-width: 85%;
+    }
+
+    /* Gör "7-Dagars Prognos"-texten synlig och justerad i mobil */
+    .week-temp-1, .week-temp-2 {
+        font-size: 4vw;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-align: center;
+        white-space: nowrap;
+        margin-top: -5px; /* Flyttar texten lite uppåt */
+    }
+
+    /* Anpassa knappen för att göra den mindre och flytta längre åt höger */
+    .button-style {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 3px;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+
+    .button-style > img {
+        width: 30px;
+        height: 30px;
+    }
 }
